@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>shop with js</title>
+
+    <!-- <script>
+        src="https://kit.fontawesome.com/09ea9ed7f5.js"
+        croddorigin="anonymous"
+    </script> -->
+
+    <script src="https://kit.fontawesome.com/d5f27f4b43.js" crossorigin="anonymous"></script>
+    
+    <style>
+        #parent{
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap:30px;
+        }
+        #parent > div{
+            box-shadow:  rgba(0, 0, 0,0.24) 0px 3px 8px;
+            border-radius: 20px;
+            padding: 10px;
+        }
+        #parent > div > div{
+            display: flex;
+            justify-content: center;
+        }
+        div > p:first-child{
+            text-decoration: line-through;
+        }
+        img{
+            border-radius: 20px;
+        }
+        button{
+            
+            width: 100%;
+            border:10;
+            border-radius: 10px;
+            background-color: plum;
+            color: purple;
+            padding: 10px 0;
+        }
+        button:hover{
+            background-color: purple;
+            color: plum;
+        }
+    </style>
+</head>
+<body>
+    <a href="cart.html" target="_blank">
+        <i class="fa-solid fa-cart-shopping" style="color: pink; font-size: 30px;"></i>
+    </a>
+
+    
+    <div id="parent"></div>
+    
+</body>
+</html>
+
+<script>
+
+    var products=[
+        {
+            id:1,
+            name:"flipcart shoe",
+            image_url:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzbMJPgWs56kkUOKcpOTz7R3RNMm8YyQ8nmQ&s",
+            mrp:3000,
+            final_price:2000,
+        },
+        {
+            id:2,
+            name:"flipcart shoe",
+            image_url:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzbMJPgWs56kkUOKcpOTz7R3RNMm8YyQ8nmQ&s",
+            mrp:3000,
+            final_price:2000,
+        },
+        {
+            id:3,
+            name:"flipcart shoe",
+            image_url:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzbMJPgWs56kkUOKcpOTz7R3RNMm8YyQ8nmQ&s",
+            mrp:3000,
+            final_price:2000,
+        },
+        {
+            id:4,
+            name:"flipcart shoe",
+            image_url:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzbMJPgWs56kkUOKcpOTz7R3RNMm8YyQ8nmQ&s",
+            mrp:3000,
+            final_price:2000,
+        },
+        {
+            id:5,
+            name:"flipcart shoe",
+            image_url:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzbMJPgWs56kkUOKcpOTz7R3RNMm8YyQ8nmQ&s",
+            mrp:3000,
+            final_price:2000,
+        },
+        {
+            id:6,
+            name:"flipcart shoe",
+            image_url:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzbMJPgWs56kkUOKcpOTz7R3RNMm8YyQ8nmQ&s",
+            mrp:3000,
+            final_price:2000,
+        }
+    ]
+
+    products.map(function(ele){
+        var div = document.createElement("div");
+        var image = document.createElement("img");
+        image.setAttribute("src",ele.image_url);
+        image.setAttribute("alt",ele.name);
+        var name = document.createElement("h4");
+        name.textContent=ele.name;
+
+        var priceBox = document.createElement("div");
+        var mrp=document.createElement("p");
+        mrp.textContent= "₹" + ele.mrp;
+
+        var price = document.createElement("p");
+        price.textContent= "₹" + ele.final_price;
+
+        priceBox.append(mrp,price);
+        
+       var btn=document.createElement("button");
+       btn.textContent = "Add to Cart";
+
+       btn.addEventListener("click",function(){
+        addToCart(ele);
+       });
+
+        div.append(image,name,price,btn);
+        document.getElementById("parent").append(div);
+    
+    });
+
+var cartArr= JSON.parse(localStorage.getItem("cartItems")) || [];
+
+
+function addToCart(products){
+    console.log(products);
+
+    cartArr.push(products);
+    localStorage.setItem("cartItems",JSON.stringify(cartArr));
+}
+</script>
